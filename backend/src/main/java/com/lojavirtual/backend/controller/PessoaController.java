@@ -12,41 +12,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lojavirtual.backend.entities.Estado;
-import com.lojavirtual.backend.services.EstadoService;
+import com.lojavirtual.backend.entities.Pessoa;
+import com.lojavirtual.backend.services.PessoaService;
 
 @RestController
-@RequestMapping("/api/estados")
-public class EstadoController {
-    
+@RequestMapping("/api/pessoas")
+public class PessoaController {
 
     @Autowired
-    private EstadoService estadoService;
+    PessoaService pessoaService;
     
-
     @GetMapping("/")
-    public List<Estado> buscarTodos(){
-        return estadoService.buscarTodos();
-    }
-    
-    @PostMapping("/")
-    public Estado salvarEstado(@RequestBody Estado estado){
-        return estadoService.salvarEstado(estado);
+    public List<Pessoa> listarTodos(){
+        return pessoaService.buscarTodos();
     }
 
-    @PutMapping("/")
-    public Estado alterarEstado(@RequestBody Estado estado){
-        return estadoService.alterarEstado(estado);
+    @PostMapping
+    public Pessoa salvarPessoa(@RequestBody Pessoa pessoa){
+        return pessoaService.salvarPessoa(pessoa);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluirEstado(@PathVariable("id") Long estadoId){
-        estadoService.excluirEstado(estadoId);
+    public ResponseEntity<Void> excluirPessoa(@PathVariable("id") Long pessoaId){
+        pessoaService.excluirPessoa(pessoaId);
 
         return ResponseEntity.ok().build();
     }
 
-
+    @PutMapping("/")
+    public Pessoa alterarPessoa(@RequestBody Pessoa pessoa){
+        return pessoaService.alterarPessoa(pessoa);
+    }
+    
 }

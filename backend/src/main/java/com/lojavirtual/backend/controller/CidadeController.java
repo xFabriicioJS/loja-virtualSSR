@@ -14,36 +14,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lojavirtual.backend.entities.Estado;
-import com.lojavirtual.backend.services.EstadoService;
+import com.lojavirtual.backend.entities.Cidade;
+import com.lojavirtual.backend.services.CidadeService;
+
 
 @RestController
-@RequestMapping("/api/estados")
-public class EstadoController {
+@RequestMapping("/api/cidades")
+public class CidadeController {
     
 
     @Autowired
-    private EstadoService estadoService;
+    private CidadeService cidadeService;
     
 
     @GetMapping("/")
-    public List<Estado> buscarTodos(){
-        return estadoService.buscarTodos();
+    public List<Cidade> buscarTodos(){
+        return cidadeService.buscarTodos();
     }
     
     @PostMapping("/")
-    public Estado salvarEstado(@RequestBody Estado estado){
-        return estadoService.salvarEstado(estado);
+    public Cidade salvarCidade(@RequestBody Cidade cidade){
+        return cidadeService.salvarCidade(cidade);
     }
 
     @PutMapping("/")
-    public Estado alterarEstado(@RequestBody Estado estado){
-        return estadoService.alterarEstado(estado);
+    public Cidade alterarCidade(@RequestBody Cidade cidade){
+        return cidadeService.alterarCidade(cidade);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluirEstado(@PathVariable("id") Long estadoId){
-        estadoService.excluirEstado(estadoId);
+    public ResponseEntity<Void> excluirCidade(@PathVariable("id") Long cidadeId){
+        cidadeService.excluirCidade(cidadeId);
 
         return ResponseEntity.ok().build();
     }

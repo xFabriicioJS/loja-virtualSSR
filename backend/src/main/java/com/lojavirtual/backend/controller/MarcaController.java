@@ -3,6 +3,7 @@ package com.lojavirtual.backend.controller;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,39 +15,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lojavirtual.backend.entities.Estado;
-import com.lojavirtual.backend.services.EstadoService;
+import com.lojavirtual.backend.entities.Marca;
+import com.lojavirtual.backend.services.MarcaService;
 
 @RestController
-@RequestMapping("/api/estados")
-public class EstadoController {
+@RequestMapping("/api/marcas")
+public class MarcaController {
     
-
     @Autowired
-    private EstadoService estadoService;
-    
+    private MarcaService marcaService;
 
     @GetMapping("/")
-    public List<Estado> buscarTodos(){
-        return estadoService.buscarTodos();
+    public List<Marca> listarTodos(){
+        return marcaService.listarTodos();
     }
-    
+
     @PostMapping("/")
-    public Estado salvarEstado(@RequestBody Estado estado){
-        return estadoService.salvarEstado(estado);
+    public Marca salvarMarca(@RequestBody Marca marca){
+        return marcaService.salvarMarca(marca);
     }
 
     @PutMapping("/")
-    public Estado alterarEstado(@RequestBody Estado estado){
-        return estadoService.alterarEstado(estado);
+    public Marca alterarMarca(@RequestBody Marca marca){
+        return marcaService.alterarMarca(marca);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluirEstado(@PathVariable("id") Long estadoId){
-        estadoService.excluirEstado(estadoId);
+    public ResponseEntity<Void> deletarMarca(@PathVariable("id") Long id){
+        marcaService.excluirMarca(id);
 
         return ResponseEntity.ok().build();
     }
-
-
 }

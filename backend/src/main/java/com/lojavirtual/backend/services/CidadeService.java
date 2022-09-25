@@ -6,37 +6,37 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lojavirtual.backend.entities.Estado;
+import com.lojavirtual.backend.entities.Cidade;
 import com.lojavirtual.backend.exceptions.ResourceNotFoundException;
-import com.lojavirtual.backend.repositories.EstadoRepository;
+import com.lojavirtual.backend.repositories.CidadeRepository;
 
 @Service
 public class CidadeService {
     
     @Autowired
-    EstadoRepository estadoRepository;
+    CidadeRepository cidadeRepository;
 
 
-    public List<Estado> buscarTodos(){
-        return estadoRepository.findAll();
+    public List<Cidade> buscarTodos(){
+        return cidadeRepository.findAll();
     }
 
-    public Estado salvarEstado(Estado estado){
-        estado.setDataCriacao(new Date());
-        Estado estadoNovo = estadoRepository.saveAndFlush(estado);
-        return estadoNovo;
+    public Cidade salvarCidade(Cidade cidade){
+        cidade.setDataCriacao(new Date());
+        Cidade cidadeNova = cidadeRepository.saveAndFlush(cidade);
+        return cidadeNova;
     }
 
-    public Estado alterarEstado(Estado estado){
-        estado.setDataAtualizacao(new Date());
-        Estado estadoAlterado = estadoRepository.saveAndFlush(estado);
-        return estadoAlterado;
+    public Cidade alterarCidade(Cidade cidade){
+        cidade.setDataAtualizacao(new Date());
+        Cidade cidadeAlterada = cidadeRepository.saveAndFlush(cidade);
+        return cidadeAlterada;
     }
 
-    public void excluirEstado(Long estadoId){
-        Estado estado = estadoRepository.findById(estadoId).orElseThrow(()-> new ResourceNotFoundException("Estado não encontrado!"));
+    public void excluirCidade(Long cidadeId){
+        Cidade cidade = cidadeRepository.findById(cidadeId).orElseThrow(()-> new ResourceNotFoundException("Cidade nao foi encontrada."));
 
-        estadoRepository.delete(estado);
+        cidadeRepository.delete(cidade);
     }
 
 
